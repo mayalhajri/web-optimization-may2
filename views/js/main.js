@@ -405,6 +405,7 @@ var resizePizzas = function(size) {
 
   // Changes the value for the size of the pizza above the slider
   function changeSliderLabel(size) {
+// * change all querySelector with getElementById
       var inner = document.getElementById("pizzaSize").innerHTML ;
     switch(size) {
       case "1":
@@ -426,6 +427,7 @@ var resizePizzas = function(size) {
    // Returns the size difference to change a pizza element from one size to another. Called by changePizzaSlices(size).
   function determineDx (elem, size) {
     var oldWidth = elem.offsetWidth;
+// * change all querySelector with getElementById
     var windowWidth = document.getElementById("randomPizzas").offsetWidth;
     var oldSize = oldWidth / windowWidth;
 
@@ -450,8 +452,12 @@ var resizePizzas = function(size) {
   }
 
   // Iterates through pizza elements on the page and changes their widths
+// * Optimized loop inside the changePizzaSizes function
   function changePizzaSizes(size) {
+// * change all querySelectorAll with getElementsByClassName
+// * Created a pizzaElements variable to hold all of the .randomPizzaContainer elements in the document and looped through the elements to apply the new width value.
     var pizzaElements = document.getElementsByClassName("randomPizzaContainer");
+// * Moved the newwidth and dx   out of the loop
       var dx = determineDx(pizzaElements[0], size);
       var newwidth = (pizzaElements[0].offsetWidth + dx) + 'px';
     for (var i = 0; i < pizzaElements.length; i++) {
@@ -471,6 +477,8 @@ var resizePizzas = function(size) {
 window.performance.mark("mark_start_generating"); // collect timing data
 
 // This for-loop actually creates and appends all of the pizzas when the page loads
+// * declare the pizzasDiv variable outside the loop, so only DOM call is made one.
+// * change all querySelector with getElementById
 var pizzasDiv = document.getElementById('randomPizzas');
 for (var i = 2; i < 100; i++) {
      pizzasDiv.appendChild(pizzaElementGenerator(i));
@@ -505,12 +513,22 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 function updatePositions() {
    frame++;
   window.performance.mark("mark_start_frame");
-
+// change all querySelectorAll with getElementsByClassName
 var items = document.getElementsByClassName('mover');
+// * use document.documentElement.scrollTop instead of document.body.scrollTop bcs it does not work anymore
 var top = (document.documentElement.scrollTop) / 1250;
-
+// * Declaring the phase variable (var phase;) in the initialisation of the for loop will prevent it from being created every time the loop is executed
+var phaseNums = [
+                    Math.sin(bodyNum + 0),
+                    Math.sin(bodyNum + 1),
+                    Math.sin(bodyNum + 2),
+                    Math.sin(bodyNum + 3),
+                    Math.sin(bodyNum + 4)
+                  ];
  for (var i = 0, len = items.length, phase; i < len; i++) {
-  phase = Math.sin( top + i % 5);
+// * declere top out of loop to avoid declar it evrey time loop is executed
+  phase = phaseNums( top + [i % 5]);
+// * Applied translateX() and translateZ(0) transform functions to the sliding pizza elements within the updatePositions function.
   items[i].style.transform = "translateX("+ 100 * phase + "px) translateZ(0)";
   }
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -531,18 +549,17 @@ window.addEventListener('scroll',updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
+// * Reduced the amount of sliding pizza elements generated from 200 down to 31
   for (var i = 31; i--;) {
     var elem = document.createElement('img');
     elem.className = 'mover';
-    
     elem.src = "images/pizza.png";
+// * I declere style.height and  elem.style.width on html file
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
     elem.style.left = (i % cols) * s + 'px'
- document.body.appendChild(elem);
+// * replace document.querySelector("#movingPizzas1").appendChild(elem); with document.body.appendChild(elem)
+    document.body.appendChild(elem);
   }  
   updatePositions();
 });
-
-
-
