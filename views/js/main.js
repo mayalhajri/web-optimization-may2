@@ -519,15 +519,15 @@ var items = document.getElementsByClassName('mover');
 var top = (document.documentElement.scrollTop) / 1250;
 // * Declaring the phase variable (var phase;) in the initialisation of the for loop will prevent it from being created every time the loop is executed
 var phaseNums = [
-                    Math.sin(bodyNum + 0),
-                    Math.sin(bodyNum + 1),
-                    Math.sin(bodyNum + 2),
-                    Math.sin(bodyNum + 3),
-                    Math.sin(bodyNum + 4)
+                    Math.sin(top + 0),
+                    Math.sin(top + 1),
+                    Math.sin(top + 2),
+                    Math.sin(top + 3),
+                    Math.sin(top + 4)
                   ];
  for (var i = 0, len = items.length, phase; i < len; i++) {
 // * declere top out of loop to avoid declar it evrey time loop is executed
-  phase = phaseNums( top + [i % 5]);
+  phase = phaseNums[i%5];
 // * Applied translateX() and translateZ(0) transform functions to the sliding pizza elements within the updatePositions function.
   items[i].style.transform = "translateX("+ 100 * phase + "px) translateZ(0)";
   }
@@ -563,6 +563,3 @@ document.addEventListener('DOMContentLoaded', function() {
   }  
   updatePositions();
 });
-
-
-
