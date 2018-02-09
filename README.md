@@ -1,12 +1,26 @@
 # web-optimization-may2
+### Instructions
+To view the portfolio and pizza website download all the files and open index.html and views/pizza.html in your browser.
+
+Or you can view the site on github pages by using the links below.
+* https://mayalhajri.github.io/web-optimization-may2/
+* https://mayalhajri.github.io/web-optimization-may2/views/pizza.html
+
 I optmiez all images by using 
 1. [optimizilla](http://optimizilla.com/)  
 2. download optimized image javascript and css resources for this page ,from [PageSpeed](https://developers.google.com/speed/pagespeed/insights/) 
 ## Critical Rendering Path
 index.html achieves a PageSpeed score of at least 90 for Mobile and Desktop.\
-my page score is **Good**\
-**99/100** mobile and **96/100** Desktop\
+### my page score is **Good**
+**99/100** mobile\
+**96/100** Desktop
+
+
+### If you want to test website 
+you can copy link https://mayalhajri.github.io/web-optimization-may2/ and past it on [PageSpeed](https://developers.google.com/speed/pagespeed/insights/) 
 ![alt text](https://i.imgur.com/yMb8C5R.png)
+
+
 # Changes that I Made : 
 ## index.html
 1. delet 
