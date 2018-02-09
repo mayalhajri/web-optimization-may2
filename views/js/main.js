@@ -12,13 +12,12 @@ browser console. To learn more about User Timing API, check out:
 http://www.html5rocks.com/en/tutorials/webperformance/usertiming/
 
 Creator:
-Cameron Pittman, Udacity Course Developer
-cameron *at* udacity *dot* com
+May Alhajri, Udacity Student
 */
 
 // As you may have realized, this website randomly generates pizzas.
 // Here are arrays of all possible pizza ingredients.
-//created by may alhajri  2018/02/04
+//created by may alhajri  2018/02/09
 var pizzaIngredients = {};
 pizzaIngredients.meats = [
   "Pepperoni",
@@ -557,7 +556,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // * I declere style.height and  elem.style.width on html file
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    elem.style.left = (i % cols) * s + 'px'
+    elem.style.left = (i % cols) * s + 'px' ;
 // * replace document.querySelector("#movingPizzas1").appendChild(elem); with document.body.appendChild(elem)
     document.body.appendChild(elem);
   }  
